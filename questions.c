@@ -89,19 +89,40 @@ void display_categories(void)
 // Displays the question for the category and dollar value
 void display_question(char *category, int value)
 {
-
+    for (int i = 0; i < NUM_QUESTIONS; i++) {
+        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value) {
+            printf("%s\nValue: %d", questions[i].question, value);
+            return;
+        }
+    }
 }
 
 // Returns true if the answer is correct for the question for that category and dollar value
 bool valid_answer(char *category, int value, char *answer)
 {
-    // Look into string comparison functions
+
+    for (int i = 0; i < NUM_QUESTIONS; i++) {
+        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value) {
+            questions[i].answered = true;
+            if(strcmp(questions[i].answer, answer) == 0) {
+                return true;
+            } else return false;
+                
+        }
+    }
+    
     return false;
 }
 
 // Returns true if the question has already been answered
 bool already_answered(char *category, int value)
 {
-    // lookup the question and see if it's already been marked as answered
-    return false;
+    for (int i = 0; i < NUM_QUESTIONS; i++) {
+        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value) {
+            if(questions[i].answered) {
+                return true;
+            } else return false;
+        }
+    }
+    
 }
