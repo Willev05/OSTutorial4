@@ -1,7 +1,7 @@
 /*
  * Tutorial 4 Jeopardy Project for SOFE 3950U: Operating Systems
  *
- * Copyright (C) 2026, <GROUP NUMBER>
+ * Copyright (C) 2026, Group 4
  * All rights reserved.
  *
  */

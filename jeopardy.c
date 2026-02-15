@@ -1,7 +1,7 @@
 /*
  * Tutorial 4 Jeopardy Project for SOFE 3950U: Operating Systems
  *
- * Copyright (C) 2026, <GROUP NUMBER>
+ * Copyright (C) 2026, Group 4
  * All rights reserved.
  *
  */
@@ -52,7 +52,7 @@ void show_results(player *players, int num_players) {
 }
 
 
-int main(int argc, char *argv[])
+int main(void)
 {
     // An array of 4 players, may need to be a pointer if you want it set dynamically
     player players[NUM_PLAYERS];
@@ -103,7 +103,10 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        display_question(category, value);
+        if (!display_question(category, value)) {
+            printf("Invalid question entered. Please select another question.\n");
+            continue;
+        }
 
         char answerInput[BUFFER_LEN];
         printf("Enter your answer (must start with 'What is' or 'Who is'): ");
@@ -152,7 +155,6 @@ int main(int argc, char *argv[])
             show_results(players, NUM_PLAYERS);
             break;
         }
-        return EXIT_SUCCESS;
     }
-
+    return EXIT_SUCCESS;
 }

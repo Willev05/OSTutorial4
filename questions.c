@@ -1,7 +1,7 @@
 /*
  * Tutorial 4 Jeopardy Project for SOFE 3950U: Operating Systems
  *
- * Copyright (C) 2026, <GROUP NUMBER>
+ * Copyright (C) 2026, Group 4
  * All rights reserved.
  *
  */
@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "questions.h"
+
+question questions[NUM_QUESTIONS];
 
 // Initializes the array of questions for the game
 void initialize_game(void)
@@ -79,22 +81,24 @@ void initialize_game(void)
 void display_categories(void)
 {
     // print categories and dollar values for each unanswered question in questions array
+    printf("///\n");
     for (int i = 0; i < NUM_QUESTIONS; i++){
         if (questions[i].answered) continue;
-        printf("///\n%s\n", questions[i].category);
-        printf("%s\n///\n", questions[i].value);
+        printf("%s\n", questions[i].category);
+        printf("%d\n///\n", questions[i].value);
     }
 }
 
 // Displays the question for the category and dollar value
-void display_question(char *category, int value)
+bool display_question(char *category, int value)
 {
     for (int i = 0; i < NUM_QUESTIONS; i++) {
         if (strcmp(questions[i].category, category) == 0 && questions[i].value == value) {
-            printf("%s\nValue: %d", questions[i].question, value);
-            return;
+            printf("%s\nValue: %d\n", questions[i].question, value);
+            return true;
         }
     }
+    return false;
 }
 
 // Returns true if the answer is correct for the question for that category and dollar value
@@ -121,10 +125,11 @@ bool already_answered(char *category, int value)
         if (strcmp(questions[i].category, category) == 0 && questions[i].value == value) {
             if(questions[i].answered) {
                 return true;
-            } else return false;
+            } 
+            else return false;
         }
     }
-    
+    return false;
 }
 
 
@@ -134,4 +139,5 @@ char* get_correct_answer(char *category, int value) {
             return questions[i].answer;
         }
     }
+    return NULL;
 }
