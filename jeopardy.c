@@ -136,13 +136,6 @@ int main(void)
             printf("Incorrect. The correct answer was: %s\n", correctAnswer);
         }
 
-        for (int i = 0; i < NUM_QUESTIONS; i++) {
-            if (strcmp(questions[i].category, category) == 0 && questions[i].value == value) {
-                questions[i].answered = true;
-                break;
-            }
-        }
-
         bool allAnswered = true;
         for (int i = 0; i < NUM_QUESTIONS; i++) {
             if (!questions[i].answered) {
